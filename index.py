@@ -1620,29 +1620,6 @@ def check_memory_enabled(user_id):
         logger.error(f"Error checking memory enabled for user {user_id}: {str(e)}")
         return False
 
-@app.post('/embeddings')
-async def fast_embed(request: Request, body):
-    data = json.loads(body)
-    text = data.get("text", "")
-    
-    if not text:
-        return Response(status_code=400, description="No text provided", headers={})
-    
-    try:
-        logger.info(f"Generating embeddings in LOCAL Mode")
-        embeddings = embedding_client.embeddings(text)
-        
-        from fastembed import TextEmbedding
-        if TextEmbedding:
-            logger.info('Fastemebd is installed')
-        
-        if embeddings is None:
-            logger.error("Embeddings returned None")
-            return Response(status_code=500, description="Embeddings generation returned None", headers={})
-        return {"embeddings": embeddings}
-    except Exception as e:
-        logger.error(f"Error generating embeddings: {str(e)}")
-        return Response(status_code=500, description=f"Error generating embeddings: {str(e)}", headers={})
     
     
 @app.post("/end_meeting")
