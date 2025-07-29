@@ -36,17 +36,16 @@ This is the backend for the entire Amurex project. You can use it to host your o
 
 Note: When using CLIENT_MODE=LOCAL, you'll need to:
 - Install Ollama for local model inference
+  - Follow these [instructions](docs/ollama_instructions.md) to install Ollama.
 - Install fast-embed for local embeddings generation
 
 ## Supabase Setup
 
 1. Create a new project on [Supabase](https://supabase.com)
+    - If you want to run supabase locally, follow the following [instructions](docs/supabase_instructions.md)
 
 2. Create the following tables in your Supabase database:
 
-### Meetings Table
-
-You can find the SQL for this table in `supabase/migrations/20241201195715_meetings.sql`
 
 3. Set up Storage:
    - Create a new bucket named `meeting_context_files`
@@ -115,6 +114,11 @@ python index.py
 
 ### Option 2: Docker
 
+---
+Note that you need to have docker and docker-compose installed on your machine, 
+follow these links to install (docker), (docker-compose) docker and doker-compose 
+respectively
+
 1. Clone the repository
 
 ```
@@ -140,12 +144,16 @@ vim .env
 ```
 docker build -t amurex-backend .
 
-# If you experience any DNS resolution issue after previously building the dockerfile
+# If you experience any DNS resolution 
+
+issue after previously building the dockerfile
 # configure the DNS with docker Daemon
 
-  - sudo sudo nano /etc/docker/daemon.json
+  - sudo nano /etc/docker/daemon.json
   - Add these DNS settings: {"dns": ["8.8.8.8", "8.8.4.4"]}`
   - Restart docker: sudo systemcl restart docker
+
+  
 ```
 
 5. Run the Docker container:
