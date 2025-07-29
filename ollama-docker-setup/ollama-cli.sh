@@ -1,5 +1,4 @@
 #!/bin/bash
-# Ollama CLI wrapper script
 
 if [ $# -eq 0 ]; then
     echo "Usage: ./ollama-cli.sh [ollama commands]"

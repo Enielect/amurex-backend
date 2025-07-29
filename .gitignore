@@ -1,6 +1,6 @@
 .env
 venv
-supabase/.temp
+supabase/
 a.py
 playground
 __pycache__
