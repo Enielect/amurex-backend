@@ -110,7 +110,7 @@ chmod +x "$SCRIPT_DIR/../ollama-docker-setup/ollama-cli.sh"
 
 
 # Start the services
-echo "Starting Docker services..."
+# echo "Starting Docker services..."
 docker-compose up -d
 
 echo "Waiting for services to start..."
@@ -124,9 +124,9 @@ if docker-compose ps | grep -q "Up"; then
     read -p "Would you like to download the llama3.1:8b model now? This may take several minutes. (y/n): " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        ./download-models.sh
+        "$SCRIPT_DIR/../ollama-docker-setup/download-models.sh"
     else
-        echo "You can download the model later by running: ./download-models.sh"
+        echo "You can download the model later by running: $SCRIPT_DIR/../ollama-docker-setup/download-models.sh"
     fi
     
     echo ""

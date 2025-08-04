@@ -43,20 +43,34 @@ setup_supabase_project() {
   elif command -v supabase &> /dev/null; then
     echo "Running: supabase init"
     supabase init
+
+    echo "Starting Supabase..."
+    supabase start
+
+    # Run migrations
+    echo "Running migrations..."
+    supabase db reset
+    
+    echo "Local setup complete!"
+    echo "Studio: http://localhost:54323"
+    echo "API: http://localhost:54321"
   elif command -v npx supabase init &> /dev/null; then
     echo "Running npx supabase init"
     npx supabase init
+
+    echo "Starting Supabase..."
+    npx supabase start
+
+    # Run migrations
+    echo "Running migrations..."
+    supabase db reset
+
+    echo "Local setup complete!"
+    echo "Studio: http://localhost:54323"
+    echo "API: http://localhost:54321"
   else
     echo "Supabase CLI not found. Please install it first."
     exit 1
-  fi
-
-  if command -v supabase start &> /dev/null; then
-    echo "Starting Supabase..."
-    supabase start
-  elif command -v npx supabase start &> /dev/null; then
-    echo "Starting Supabase..."
-    npx supabase start
   fi
 }
 
