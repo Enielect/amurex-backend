@@ -38,11 +38,9 @@ install_supabase_cli() {
 setup_supabase_project() {
   echo "Setting up Supabase project..."
 
-  if [ -d "./supabase" ]; then
-    echo "Supabase project already initialized."
-  elif command -v supabase &> /dev/null; then
-    echo "Running: supabase init"
-    supabase init
+  if command -v supabase &> /dev/null; then
+    # echo "Running: supabase init"
+    # supabase init
 
     echo "Starting Supabase..."
     supabase start
@@ -55,8 +53,8 @@ setup_supabase_project() {
     echo "Studio: http://localhost:54323"
     echo "API: http://localhost:54321"
   elif command -v npx supabase init &> /dev/null; then
-    echo "Running npx supabase init"
-    npx supabase init
+    # echo "Running npx supabase init"
+    # npx supabase init
 
     echo "Starting Supabase..."
     npx supabase start
