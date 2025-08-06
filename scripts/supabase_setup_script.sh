@@ -35,6 +35,8 @@ install_supabase_cli() {
   esac
 }
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 setup_supabase_project() {
   echo "Setting up Supabase project..."
 
@@ -48,6 +50,15 @@ setup_supabase_project() {
     # Run migrations
     echo "Running migrations..."
     supabase db reset
+
+    # Run Python seeder
+    echo "Seeding data..."
+    cd "$SCRIPT_DIR/.."
+    if command -v python3 &> /dev/null; then
+      python3 seed_google_client.py
+    else
+      python seed_google_client.py
+    fi
     
     echo "Local setup complete!"
     echo "Studio: http://localhost:54323"
@@ -62,6 +73,11 @@ setup_supabase_project() {
     # Run migrations
     echo "Running migrations..."
     supabase db reset
+
+    # Run Python seeder
+    echo "Seeding data..."
+    cd "$SCRIPT_DIR/.."
+    python seed_google_client.py
 
     echo "Local setup complete!"
     echo "Studio: http://localhost:54323"
